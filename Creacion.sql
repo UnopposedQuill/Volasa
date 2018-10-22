@@ -61,3 +61,8 @@ create table ClienteXVueloXEquipajeRegistrado(
 	id int identity primary key,
 	FKClienteXVuelo int constraint FKClienteXVueloXEquipajeRegistrado_ClienteXVuelo references ClienteXVuelo(id),
 	FKEquipajeRegistrado int constraint FKClienteXVueloXEquipajeRegistrado_EquipajeRegistrado references EquipajeRegistrado(id)
+)
+
+use master
+go
+
