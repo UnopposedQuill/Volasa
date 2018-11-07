@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Menú Principal</title>
+</head>
+<body>
+    <h1>Bienvenido al Menú Principal</h1>
+    {% if cliente %}
+        <h2>cliente.nombre</h2>
+    {% endif %}
+    <button>Observar vuelos disponibles</button>
+    <button>Observar historial de vuelos</button>
+    {% if cliente %}
+        <p>Información Personal:<br/>Nombre: </p>
+        <p>cliente.nombre</p>
+    {% endif %}
+</body>
+</html>

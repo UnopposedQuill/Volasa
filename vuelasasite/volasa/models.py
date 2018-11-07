@@ -71,7 +71,7 @@ class Vuelo(models.Model):
     cliente = models.ManyToManyField(Cliente, through='ClienteXVuelo')
 
     def __str__(self):
-        return self.codigoAvion + "\t" + self.aerolinea
+        return "Vuelo: " + self.codigoAvion + "\tde la aerolínea: " + self.aerolinea
 
 
 class ClienteXVuelo(models.Model):

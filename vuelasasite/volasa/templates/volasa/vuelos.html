@@ -1,14 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <title>Vuelos Disponibles</title>
 </head>
 <body>
+    <h1>Vuelos disponibles</h1>
     {% if vuelos_disponibles %}
         <ul>
         {% for vuelo in vuelos_disponibles %}
-            <li><a href="/volasa/vuelos/{{ vuelo.codigoAvion }}/">{{ vuelo.aerolinea }}</a></li>
+            <li><a href="/volasa/vuelos/{{ vuelo.codigoAvion }}/">{{ vuelo.codigoAvion }}</a></li>
         {% endfor %}
         </ul>
     {% else %}
