@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from django.http import HttpResponse, Http404
+from  django.http import HttpResponse, Http404
 from .models import Vuelo, Cliente
 from django.template import loader
 
@@ -37,3 +37,16 @@ def vuelos(request):
     # Esto era para una vista más básica de pruebas.
     # output = ', '.join([v.codigoAvion for v in vuelos_disponibles])
     # return HttpResponse(output)
+
+
+def register(request):
+    return HttpResponse("Bienvenido al sistema de registro")
+
+
+def iniciar_sesion(request, cliente_email, cliente_contrasenha):
+    try:
+        cliente_solicitud = Cliente.objects.get(Cliente, email=cliente_email, contrasenha=cliente_contrasenha)
+    except Cliente.DoesNotExist:
+        raise Http404
+    context = {'cliente': cliente_solicitud}
+    return render(request, 'volasa/cliente.html', context)
