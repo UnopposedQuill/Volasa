@@ -6,3 +6,7 @@ from django.http import HttpResponse
 
 def login(request):
     return HttpResponse("Hello World. You're at the login screen.")
+
+
+def cliente(request):
+    return HttpResponse("Welcome Cliente")
