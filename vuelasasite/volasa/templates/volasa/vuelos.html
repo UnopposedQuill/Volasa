@@ -6,10 +6,14 @@
 </head>
 <body>
     <h1>Vuelos disponibles</h1>
+    <hr>
     {% if vuelos_disponibles %}
         <ul>
         {% for vuelo in vuelos_disponibles %}
-            <li><a href="/volasa/vuelos/{{ vuelo.codigoAvion }}/">{{ vuelo.codigoAvion }}</a></li>
+            <!--Esto se quedó porque cambié la estructura de los URL's para no tenerlos hardcodeados y tener que
+            estar cambiando todos los templates-->
+            <!--<li><a href="/volasa/vuelos/{{ vuelo.codigoAvion }}/">{{ vuelo.codigoAvion }}</a></li>-->
+            <li><a href="{% url 'volasa:vuelo' vuelo.codigoAvion %}">{{ vuelo.codigoAvion }}</a></li>
         {% endfor %}
         </ul>
     {% else %}

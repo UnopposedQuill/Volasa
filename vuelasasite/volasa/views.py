@@ -1,10 +1,11 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, Http404
 from .models import Vuelo, Cliente
 from django.template import loader
 
 # Create your views here.
 # TODO limpiar el código de versiones anteriores en los comentarios
+# TODO limpiar los imports
 
 
 def login(request):
@@ -12,11 +13,13 @@ def login(request):
 
 
 def cliente(request, cliente_id):
-    try:
-        cliente = Cliente.objects.get(pk=cliente_id)
-    except Cliente.DoesNotExist:
-        raise Http404
-    return render(request, 'volasa,cliente.html', {'cliente':cliente})
+    cliente_request = get_object_or_404(Cliente, pk=cliente_id)
+    return render(request, 'volasa/cliente.html', {'cliente': cliente_request})
+    # try:
+    #     cliente = Cliente.objects.get(pk=cliente_id)
+    # except Cliente.DoesNotExist:
+    #     raise Http404
+    # return render(request, 'volasa,cliente.html', {'cliente':cliente})
     # return HttpResponse("Welcome Cliente")
 
 
@@ -31,7 +34,6 @@ def vuelos(request):
     return render(request, 'volasa/vuelos.html', context)
 
     # return HttpResponse(template.render(context, request))
-
     # Esto era para una vista más básica de pruebas.
     # output = ', '.join([v.codigoAvion for v in vuelos_disponibles])
     # return HttpResponse(output)

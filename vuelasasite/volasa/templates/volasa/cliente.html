@@ -7,13 +7,19 @@
 <body>
     <h1>Bienvenido al Menú Principal</h1>
     {% if cliente %}
-        <h2>cliente.nombre</h2>
+        <h2>{{ cliente.nombre }}</h2>
     {% endif %}
-    <button>Observar vuelos disponibles</button>
+    <hr>
+    <a href="{% url 'volasa:vuelos' %}">
+        <button>Observar vuelos disponibles</button>
+    </a>
+    <!--TODO crear la vista del historial de vuelos y apuntar este botón a esa vista-->
+    <a href="{% url 'volasa:vuelos' %}">
     <button>Observar historial de vuelos</button>
+    </a>
     {% if cliente %}
-        <p>Información Personal:<br/>Nombre: </p>
-        <p>cliente.nombre</p>
+        <hr>
+        <p>Información Personal:<br/>Nombre: {{ cliente.nombre }}</p>
     {% endif %}
 </body>
 </html>

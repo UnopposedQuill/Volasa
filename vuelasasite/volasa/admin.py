@@ -4,6 +4,12 @@ from django.contrib import admin
 
 from django.contrib import admin
 
-from .models import Vuelo
+from .models import *
 
 admin.site.register(Vuelo)
+admin.site.register(Cliente)
+admin.site.register(EstadoVuelo)
+admin.site.register(Administrador)
+admin.site.register(ClienteXVuelo)
+admin.site.register(EquipajeRegistrado)
+admin.site.register(Asiento)

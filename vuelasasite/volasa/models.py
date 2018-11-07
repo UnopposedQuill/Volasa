@@ -9,6 +9,7 @@ una llave primaria a un campo de la tabla,
 la cual se modela como una clase. 
 """
 
+
 class Cliente(models.Model):
     nombre = models.CharField(max_length=100)
     numeroPasaporte = models.CharField(max_length=50,verbose_name='Numero de Pasaporte')
