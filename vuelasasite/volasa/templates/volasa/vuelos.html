@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vuelos Disponibles</title>
+</head>
+<body>
+    {% if vuelos_disponibles %}
+        <ul>
+        {% for vuelo in vuelos_disponibles %}
+            <li><a href="/volasa/vuelos/{{ vuelo.codigoAvion }}/">{{ vuelo.aerolinea }}</a></li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No hay vuelos disponibles.</p>
+    {% endif %}
+</body>
+</html>

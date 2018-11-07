@@ -19,4 +19,5 @@ from django.urls import include, path
 urlpatterns = [
     path('volasa/', include('volasa.urls')),
     path('admin/', admin.site.urls),
+
 ]
