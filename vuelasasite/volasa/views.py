@@ -6,7 +6,7 @@ from django.template import loader
 # Create your views here.
 # TODO limpiar el código de versiones anteriores en los comentarios
 # TODO limpiar los imports
-
+# TODO cambiar todas views por view basadas en clases.
 
 def login(request):
     return HttpResponse("Hello World. You're at the login screen.")
@@ -44,6 +44,7 @@ def register(request):
 
 
 def iniciar_sesion(request, cliente_email, cliente_contrasenha):
+    # TODO cambiar esto para que no tire una excepción al equivocarse, sino que simplemente marque en rojo
     try:
         cliente_solicitud = Cliente.objects.get(Cliente, email=cliente_email, contrasenha=cliente_contrasenha)
     except Cliente.DoesNotExist:

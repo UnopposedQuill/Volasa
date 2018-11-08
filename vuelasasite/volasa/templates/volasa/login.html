@@ -7,13 +7,16 @@
 <body>
     <h1>Bienvenido a Volasa</h1>
     <hr>
-    <form action="iniciarSesion">
+    <form action="{% url "volasa:iniciar_sesion" %}" method="post">
         Email:<br>
         <input type="email" name="correo_electronico"><br>
         Contraseña:<br>
         <input type="password" name="contrasenha"><br>
         <input type="submit" value="Iniciar Sesión">
         <input type="reset" value="Reestablecer"><br>
+        <a href="{% url "volasa:register" %}">
+            <button>¿Nuevo en Volasa?</button>
+        </a>
         <input type="button">
     </form>
 </body>
