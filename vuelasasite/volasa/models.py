@@ -12,8 +12,6 @@ la cual se modela como una clase.
 
 class Cliente(AbstractUser):
 
-    # isAdministrador = models.BooleanField(verbose_name='Es Administrador', default=False)
-
     def is_administer(self):
         return self.is_staff
 
@@ -28,28 +26,12 @@ class Cliente(AbstractUser):
                 return True
             except Cliente.DoesNotExist:
                 return False
-    # nombre = models.CharField(max_length=100)
-
-    # correo = models.EmailField(max_length=50)
-    # contrasenha = models.CharField(max_length=20)
-
-    # def __str__(self):
-    #   return self.nombre
 
 
 class InformacionCliente(models.Model):
     numeroPasaporte = models.CharField(max_length=50, verbose_name='Numero de Pasaporte')
     paisProcedencia = models.CharField(max_length=50, verbose_name='Pais de Procedencia')
     idCliente = models.ForeignKey(Cliente, on_delete=models.CASCADE)
-
-# class Administrador(models.Model):
-#     nombre = models.CharField(max_length=100)
-#     correo = models.EmailField(max_length=50)
-#     contrasenha = models.CharField(max_length=20)
-#     tipoAdministrador = models.BooleanField(default=1)
-#
-#     def __str__(self):
-#         return self.nombre
 
 
 class EstadoVuelo(models.Model):
