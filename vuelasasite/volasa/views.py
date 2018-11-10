@@ -29,6 +29,7 @@ class VistaCliente(View):
 
 class VistaVuelo(View):
 
+    @method_decorator(login_required(login_url='volasa:login'))
     def get(self, request, vuelo_id):
         return HttpResponse("Vuelo %s" % vuelo_id)
 
@@ -36,6 +37,7 @@ class VistaVuelo(View):
 class VistaVuelos(View):
     model = Vuelo
 
+    @method_decorator(login_required(login_url='volasa:login'))
     def get(self, request):
         vuelos_disponibles = Vuelo.objects.order_by('-fechaPartida')[:5]
         context = {'vuelos_disponibles': vuelos_disponibles}
@@ -43,6 +45,7 @@ class VistaVuelos(View):
 
 
 class Register(View):
+
     def register(self, request):
         return HttpResponse("Bienvenido al sistema de registro")
 
@@ -78,6 +81,7 @@ class Login(View):
 
 class Logout(View):
 
+    @method_decorator(login_required(login_url='volasa:login'))
     def get(self, request):
         logout(request)
         return render(request, 'volasa/logout.html')

@@ -2,11 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9358489a-15f9-43d2-aebb-e2d9c75de8fe" name="Default Changelist" comment="Agregados los archivos necesarios para el manejo con la versión profesional de Pycharm al proyecto.">
-      <change afterPath="$PROJECT_DIR$/vuelasasite/volasa/templates/volasa/logout.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vuelasasite/volasa/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/vuelasasite/volasa/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vuelasasite/volasa/templates/volasa/cliente.html" beforeDir="false" afterPath="$PROJECT_DIR$/vuelasasite/volasa/templates/volasa/cliente.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vuelasasite/volasa/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/vuelasasite/volasa/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vuelasasite/volasa/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/vuelasasite/volasa/views.py" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.idea/httpRequests/" />
@@ -86,7 +81,7 @@
           <entry key="Django Console" value="65" />
           <entry key="dummy" value="17" />
           <entry key="html" value="2023" />
-          <entry key="py" value="8503" />
+          <entry key="py" value="8508" />
           <entry key="txt" value="196" />
         </counts>
       </usages-collector>
@@ -94,7 +89,7 @@
         <counts>
           <entry key="HTML" value="2023" />
           <entry key="PLAIN_TEXT" value="213" />
-          <entry key="Python" value="8568" />
+          <entry key="Python" value="8573" />
         </counts>
       </usages-collector>
     </session>
@@ -119,11 +114,11 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/vuelasasite/volasa/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="171">
-              <caret line="66" column="37" lean-forward="true" selection-start-line="66" selection-start-column="37" selection-end-line="66" selection-end-column="37" />
+            <state relative-caret-position="293">
+              <caret line="83" column="63" selection-start-line="83" selection-start-column="63" selection-end-line="83" selection-end-column="63" />
               <folding>
                 <element signature="e#0#36#0" expanded="true" />
-                <marker date="1541887755724" expanded="true" signature="2653:2654" ph="..." />
+                <marker date="1541887922104" expanded="true" signature="2782:2783" ph="..." />
               </folding>
             </state>
           </provider>
@@ -420,8 +415,8 @@
       <window_info id="Favorites" order="2" sideWeight="0.50163937" side_tool="true" weight="0.18683812" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49924356" weight="0.3295082" />
-      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.30163935" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49924356" visible="true" weight="0.3295082" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.30163935" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.49924356" weight="0.3295082" />
@@ -454,7 +449,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/vuelasasite/volasa/views.py</url>
-          <line>61</line>
+          <line>64</line>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
       </breakpoints>
@@ -779,11 +774,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/vuelasasite/volasa/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="66" column="37" lean-forward="true" selection-start-line="66" selection-start-column="37" selection-end-line="66" selection-end-column="37" />
+        <state relative-caret-position="293">
+          <caret line="83" column="63" selection-start-line="83" selection-start-column="63" selection-end-line="83" selection-end-column="63" />
           <folding>
             <element signature="e#0#36#0" expanded="true" />
-            <marker date="1541887755724" expanded="true" signature="2653:2654" ph="..." />
+            <marker date="1541887922104" expanded="true" signature="2782:2783" ph="..." />
           </folding>
         </state>
       </provider>
