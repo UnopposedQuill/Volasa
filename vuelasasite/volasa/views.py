@@ -8,10 +8,6 @@ from django.contrib.auth import authenticate, login, logout
 from .models import Vuelo, Cliente, InformacionCliente
 from .forms import FormInicioSesion, FormRegistrar
 
-# TODO quitar todo lo de logging
-import logging
-logger = logging.getLogger(__name__)
-
 # Create your views here.
 
 

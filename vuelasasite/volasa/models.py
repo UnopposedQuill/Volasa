@@ -18,9 +18,6 @@ class Cliente(AbstractUser):
     def is_valid_cliente(self):
         if not self.is_administer():
             try:
-                # TODO hacer que lo siguiente deje de dar error siempre
-                # TODO eliminar esa línea comentada para visualizar los datos
-                # informacionesCliente = InformacionCliente.objects.get(numeroPasaporte='swqiwokwq')
                 informacion_cliente = InformacionCliente.objects.get(idCliente=self)
                 return True
             except Cliente.DoesNotExist:
