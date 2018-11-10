@@ -5,8 +5,8 @@ from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.contrib.auth import authenticate, login, logout
 
-from .models import Vuelo, Cliente
-from .forms import FormInicioSesion
+from .models import Vuelo, Cliente, InformacionCliente
+from .forms import FormInicioSesion, FormRegistrar
 
 # TODO quitar todo lo de logging
 import logging
@@ -46,8 +46,29 @@ class VistaVuelos(View):
 
 class Register(View):
 
-    def register(self, request):
-        return HttpResponse("Bienvenido al sistema de registro")
+    def get(self, request):
+        form = FormRegistrar()
+        return render(request, 'volasa/registrar.html', {'form': form})
+
+    def post(self, request):
+        form = FormRegistrar(request.POST)
+        if form.is_valid():
+            # Construyo un nuevo cliente a partir de la información pasada
+            cliente_nuevo = Cliente(username=form.cleaned_data['username'],
+                                    email=form.cleaned_data['email'])
+            # Le coloco su contraseña
+            cliente_nuevo.set_password(form.cleaned_data['contrasenha'])
+            # Lo guardo en la base de datos
+            cliente_nuevo.save()
+            # Ahora la información extra
+            informacion = InformacionCliente(numeroPasaporte=form.cleaned_data['numero_pasaporte'],
+                                             paisProcedencia=form.cleaned_data['pais_origen'],
+                                             idCliente=cliente_nuevo)
+            # ahora guardo su información
+            informacion.save()
+            # y redirijo al login
+            return redirect('volasa:login')
+        return render(request, 'volasa/registrar.html', {'form': form})
 
 
 class Login(View):
@@ -85,3 +106,5 @@ class Logout(View):
     def get(self, request):
         logout(request)
         return render(request, 'volasa/logout.html')
+
+

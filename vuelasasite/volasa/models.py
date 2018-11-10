@@ -22,7 +22,7 @@ class Cliente(AbstractUser):
                 # TODO hacer que lo siguiente deje de dar error siempre
                 # TODO eliminar esa línea comentada para visualizar los datos
                 # informacionesCliente = InformacionCliente.objects.get(numeroPasaporte='swqiwokwq')
-                informacion_cliente = InformacionCliente.objects.get(idCliente=self.pk-1)
+                informacion_cliente = InformacionCliente.objects.get(idCliente=self.pk)
                 return True
             except Cliente.DoesNotExist:
                 return False

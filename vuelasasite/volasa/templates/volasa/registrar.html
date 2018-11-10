@@ -2,9 +2,20 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Registrar Usuario</title>
 </head>
 <body>
-
+    <h1>Registrar un Nuevo Usuario</h1>
+    <hr>
+    <form action="{% url "volasa:register" %}" method="post">
+        {% csrf_token %}
+        {{ form }}
+        <br>
+        <input type="submit" value="Registrarse">
+        <input type="reset" value="Restablecer"><br>
+    </form>
+    <a href="{% url "volasa:register" %}">
+        <button>¿Nuevo en Volasa?</button>
+    </a>
 </body>
 </html>
