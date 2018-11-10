@@ -5,7 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 
 from .models import Vuelo, Cliente
-from .forms import FormCliente
+from .forms import FormInicioSesion
 
 # Create your views here.
 
@@ -46,11 +46,11 @@ class Login(View):
     model = Cliente
 
     def get(self, request):
-        form = FormCliente()
+        form = FormInicioSesion()
         return render(request, 'volasa/login.html', {'form': form})
 
     def post(self, request):
-        form = FormCliente(request.POST)
+        form = FormInicioSesion(request.POST)
         if form.is_valid():
             cliente_solicitud = get_object_or_404(Cliente,
                                                   correo=form.cleaned_data['correo'],
