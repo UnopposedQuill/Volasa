@@ -3,9 +3,14 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.views import View
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
+from django.contrib.auth import authenticate, login, logout
 
 from .models import Vuelo, Cliente
 from .forms import FormInicioSesion
+
+# TODO quitar todo lo de logging
+import logging
+logger = logging.getLogger(__name__)
 
 # Create your views here.
 
@@ -52,7 +57,15 @@ class Login(View):
     def post(self, request):
         form = FormInicioSesion(request.POST)
         if form.is_valid():
-            cliente_solicitud = get_object_or_404(Cliente,
-                                                  correo=form.cleaned_data['correo'],
-                                                  contrasenha=form.cleaned_data['contrasenha'])
-            return redirect('volasa:cliente', cliente_id=cliente_solicitud.id)
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['contrasenha']
+            user = authenticate(request, username=username, password=password)
+            if user is not None:
+                if user.is_valid_cliente():
+                    login(request, user)
+                    return redirect('volasa:cliente', cliente_id=user.id)
+                else:
+                    form.add_error(field='username', error='El usuario no es un cliente válido')
+            else:
+                form.add_error(field='username', error='El nombre de usuario y la contraseña no coinciden')
+            return render(request, 'volasa/login.html', {'form': form})

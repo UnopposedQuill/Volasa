@@ -1,6 +1,5 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
-import sys
 
 # Create your models here.
 """ 
@@ -19,10 +18,14 @@ class Cliente(AbstractUser):
         return self.is_staff
 
     def is_valid_cliente(self):
-        try:
-            return not(self.is_administer() & InformacionCliente.objects.get(idCliente=self.id))
-        except Cliente.DoesNotExist:
-            return False
+        if not self.is_administer():
+            try:
+                return True
+                informacionesCliente = InformacionCliente.objects.get(numeroPasaporte='swqiwokwq')
+                informacion_cliente = InformacionCliente.objects.get(idCliente=self.pk-1)
+                return True
+            except Cliente.DoesNotExist:
+                return False
     # nombre = models.CharField(max_length=100)
 
     # correo = models.EmailField(max_length=50)
@@ -67,7 +70,7 @@ class Asiento(models.Model):
     columna = models.PositiveIntegerField()
 
     def __str__(self):
-        return "Fila: " + str(self.fila) + "Columna: " + self.columna
+        return "Fila: " + str(self.fila) + "Columna: " + str(self.columna)
 
 
 class Vuelo(models.Model):
