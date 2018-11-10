@@ -17,6 +17,9 @@
     <a href="{% url 'volasa:vuelos' %}">
         <button>Observar historial de vuelos</button>
     </a>
+    <a href="{% url 'volasa:logout' %}">
+        <button>Cerrar Sesión</button>
+    </a>
     {% if cliente %}
         <hr>
         <p>Información Personal:<br/>Nombre: {{ cliente.nombre }}</p>

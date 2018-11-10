@@ -21,7 +21,9 @@ class Cliente(AbstractUser):
         if not self.is_administer():
             try:
                 return True
-                informacionesCliente = InformacionCliente.objects.get(numeroPasaporte='swqiwokwq')
+                # TODO hacer que lo siguiente deje de dar error siempre
+                # TODO eliminar esa línea comentada para visualizar los datos
+                # informacionesCliente = InformacionCliente.objects.get(numeroPasaporte='swqiwokwq')
                 informacion_cliente = InformacionCliente.objects.get(idCliente=self.pk-1)
                 return True
             except Cliente.DoesNotExist:

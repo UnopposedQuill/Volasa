@@ -61,6 +61,11 @@ class Login(View):
             password = form.cleaned_data['contrasenha']
             user = authenticate(request, username=username, password=password)
             if user is not None:
+                # Si es un administrador, lo logeo como uno
+                if user.is_administer():
+                    login(request, user)
+                    return redirect('/admin/')
+                # Si no lo es, tengo que verificar primero que sea un cliente
                 if user.is_valid_cliente():
                     login(request, user)
                     return redirect('volasa:cliente', cliente_id=user.id)
@@ -69,3 +74,10 @@ class Login(View):
             else:
                 form.add_error(field='username', error='El nombre de usuario y la contraseña no coinciden')
             return render(request, 'volasa/login.html', {'form': form})
+
+
+class Logout(View):
+
+    def get(self, request):
+        logout(request)
+        return render(request, 'volasa/logout.html')
