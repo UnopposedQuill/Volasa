@@ -1,29 +1,36 @@
-from django.http import HttpResponse, Http404
-from django.shortcuts import render, get_object_or_404
+from django.http import HttpResponse
+from django.shortcuts import render, get_object_or_404, redirect
 from django.views import View
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 
 from .models import Vuelo, Cliente
+from .forms import FormCliente
 
 # Create your views here.
 
 
-class Login(View):
-    def get(self, request):
-        return HttpResponse("Hello World. You're at the login screen.")
+class VistaCliente(View):
+    model = Cliente
 
-
-class Cliente(View):
     def get(self, request, cliente_id):
         cliente_request = get_object_or_404(Cliente, pk=cliente_id)
         return render(request, 'volasa/cliente.html', {'cliente': cliente_request})
 
+    @method_decorator(login_required(login_url='volasa:login'))
+    def dispatch(self, *args, **kwargs):
+        return super().dispatch(*args, **kwargs)
 
-class Vuelo(View):
+
+class VistaVuelo(View):
+
     def get(self, request, vuelo_id):
         return HttpResponse("Vuelo %s" % vuelo_id)
 
 
-class Vuelos(View):
+class VistaVuelos(View):
+    model = Vuelo
+
     def get(self, request):
         vuelos_disponibles = Vuelo.objects.order_by('-fechaPartida')[:5]
         context = {'vuelos_disponibles': vuelos_disponibles}
@@ -35,12 +42,17 @@ class Register(View):
         return HttpResponse("Bienvenido al sistema de registro")
 
 
-class IniciarSesion(View):
-    def get(request, cliente_email, cliente_contrasenha):
-        # TODO cambiar esto para que no tire una excepción al equivocarse, sino que simplemente marque en rojo
-        try:
-            cliente_solicitud = Cliente.objects.get(Cliente, email=cliente_email, contrasenha=cliente_contrasenha)
-        except Cliente.DoesNotExist:
-            raise Http404
-        context = {'cliente': cliente_solicitud}
-        return render(request, 'volasa/cliente.html', context)
+class Login(View):
+    model = Cliente
+
+    def get(self, request):
+        form = FormCliente()
+        return render(request, 'volasa/login.html', {'form': form})
+
+    def post(self, request):
+        form = FormCliente(request.POST)
+        if form.is_valid():
+            cliente_solicitud = get_object_or_404(Cliente,
+                                                  correo=form.cleaned_data['correo'],
+                                                  contrasenha=form.cleaned_data['contrasenha'])
+            return redirect('volasa:cliente', cliente_id=cliente_solicitud.id)

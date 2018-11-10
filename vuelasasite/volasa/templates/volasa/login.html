@@ -7,17 +7,15 @@
 <body>
     <h1>Bienvenido a Volasa</h1>
     <hr>
-    <form action="{% url "volasa:iniciar_sesion" %}" method="post">
-        Email:<br>
-        <input type="email" name="correo_electronico"><br>
-        Contraseña:<br>
-        <input type="password" name="contrasenha"><br>
+    <form action="{% url "volasa:login" %}" method="post">
+        {% csrf_token %}
+        {{ form }}
+        <br>
         <input type="submit" value="Iniciar Sesión">
-        <input type="reset" value="Reestablecer"><br>
-        <a href="{% url "volasa:register" %}">
-            <button>¿Nuevo en Volasa?</button>
-        </a>
-        <input type="button">
+        <input type="reset" value="Restablecer"><br>
     </form>
+    <a href="{% url "volasa:register" %}">
+        <button>¿Nuevo en Volasa?</button>
+    </a>
 </body>
 </html>

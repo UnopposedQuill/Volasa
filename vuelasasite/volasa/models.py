@@ -12,8 +12,8 @@ la cual se modela como una clase.
 
 class Cliente(models.Model):
     nombre = models.CharField(max_length=100)
-    numeroPasaporte = models.CharField(max_length=50,verbose_name='Numero de Pasaporte')
-    paisProcedencia = models.CharField(max_length=50,verbose_name='Pais de Procedencia')
+    numeroPasaporte = models.CharField(max_length=50, verbose_name='Numero de Pasaporte')
+    paisProcedencia = models.CharField(max_length=50, verbose_name='Pais de Procedencia')
     correo = models.EmailField(max_length=50)
     contrasenha = models.CharField(max_length=20)
 
