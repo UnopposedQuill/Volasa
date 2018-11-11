@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Menú Principal</title>
+</head>
+<body>
+    <h1>Bienvenido al Menú Principal</h1>
+    {% if admin %}
+        <h2>{{ admin.nombre }}</h2>
+    {% endif %}
+    <hr>
+    <a href="/admin">
+        <button>Panel de administración</button>
+    </a>
+    <a href="{% url 'volasa:admin_checkin' %}">
+        <button>Hacer check-in manual</button>
+    </a>
+    <a href="{% url 'volasa:logout' %}">
+        <button>Cerrar Sesión</button>
+    </a>
+    {% if cliente %}
+        <hr>
+        <h2>Información Personal:</h2>
+            <p>
+                Nombre: {{ admin.get_full_name }}<br>
+                Nombre de Usuario: {{ admin.get_username }}<br>
+                Email: {{ admin.get_email_field_name }}<br>
+            <p>
+    {% endif %}
+</body>
+</html>

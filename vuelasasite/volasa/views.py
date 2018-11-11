@@ -24,6 +24,17 @@ class VistaCliente(View):
     def dispatch(self, *args, **kwargs):
         return super().dispatch(*args, **kwargs)
 
+class VistaAdmin(View):
+    model = Cliente
+
+    def get(self, request, admin_id):
+        admin_request = get_object_or_404(Cliente, pk=admin_id)
+        context = {'admin': admin_request}
+        return render(request, 'volasa/admin.html', context)
+
+    @method_decorator(login_required(login_url='volasa:login'))
+    def dispatch(self, *args, **kwargs):
+        return super().dispatch(*args, **kwargs)
 
 class VistaVuelo(View):
 
@@ -86,7 +97,7 @@ class Login(View):
                 # Si es un administrador, lo logeo como uno
                 if user.is_administer():
                     login(request, user)
-                    return redirect('/admin/')
+                    return redirect('volasa:admin', admin_id=user.id)
                 # Si no lo es, tengo que verificar primero que sea un cliente
                 if user.is_valid_cliente():
                     login(request, user)
@@ -106,9 +117,13 @@ class Logout(View):
 
 
 class HistorialVuelos(View):
-
     def get(self, request, cliente_id):
         cliente_solicitud = get_object_or_404(Cliente, pk=cliente_id)
         vuelos_cliente = ClienteXVuelo.objects.filter(idCliente=cliente_solicitud).order_by('fechaPartida')[:10]
         context = {'vuelos_cliente': vuelos_cliente}
         return render(request, 'volasa/historialvuelo.html', context)
+
+class AdminCheckIn(View):
+    @method_decorator(login_required(login_url='volasa:login'))
+    def get(self, request):
+        return render(request, 'volasa/admin_checkin.html')

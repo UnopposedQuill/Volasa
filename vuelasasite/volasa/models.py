@@ -12,7 +12,6 @@ la cual se modela como una clase.
 
 
 class Cliente(AbstractUser):
-
     def is_administer(self):
         return self.is_staff
 

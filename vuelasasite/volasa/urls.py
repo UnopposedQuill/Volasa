@@ -1,3 +1,4 @@
+from django.contrib import admin
 from django.urls import path
 from . import views
 
@@ -11,4 +12,6 @@ urlpatterns = [
     path('vuelos', views.VistaVuelos.as_view(), name='vuelos'),
     path('vuelos/<str:vuelo_id>/', views.VistaVuelo.as_view(), name='vuelo'),
     path('cliente/<int:cliente_id>/vuelos', views.HistorialVuelos.as_view(), name='historial_vuelos'),
+    path('admin/<int:admin_id>/', views.VistaAdmin.as_view(), name='admin'),
+    path('checkin', views.AdminCheckIn.as_view(), name='admin_checkin'),
 ]
