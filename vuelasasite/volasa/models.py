@@ -42,7 +42,7 @@ class EquipajeRegistrado(models.Model):
     peso = models.DecimalField(max_digits=7, decimal_places=3)
 
     def __str__(self):
-        return self.descripcion + str(self.peso)
+        return self.descripcion + "     Peso: " + str(self.peso) + " kg."
 
 
 class Asiento(models.Model):

@@ -14,4 +14,6 @@ urlpatterns = [
     path('cliente/<int:cliente_id>/vuelos', views.HistorialVuelos.as_view(), name='historial_vuelos'),
     path('admin/<int:admin_id>/', views.VistaAdmin.as_view(), name='admin'),
     path('checkin', views.AdminCheckIn.as_view(), name='admin_checkin'),
+    path('equipaje', views.AdminEquipaje.as_view(), name='admin_equipaje'),
+    path('registro', views.AdminEquipajeRegistro.as_view(), name='admin_equipaje_registro'),
 ]

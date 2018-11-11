@@ -7,15 +7,22 @@
 <body>
     <h1>Registrar un Nuevo Usuario</h1>
     <hr>
-    <form action="{% url "volasa:register" %}" method="post">
+    <form id="form_RegistroCliente" action="{% url "volasa:register" %}" method="post">
         {% csrf_token %}
         {{ form }}
         <br>
         <input type="submit" value="Registrarse">
-        <input type="reset" value="Restablecer"><br>
+        <input type="button" onclick="resetear()" value="Restablecer"><br><br>
     </form>
-    <a href="{% url "volasa:register" %}">
-        <button>¿Nuevo en Volasa?</button>
+    <a href="{% url "volasa:login" %}">
+        <button>Regresar</button>
     </a>
+
+<script>
+function resetear() {
+ document.getElementById("form_RegistroCliente").reset();
+}
+</script>
+
 </body>
 </html>

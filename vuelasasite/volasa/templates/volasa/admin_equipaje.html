@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Administrador - Registro de equipaje</title>
+</head>
+<body>
+    <h1>Registrar equipaje para un vuelo</h1>
+    <hr>
+    <form id="form_RegistroEquipaje" action="{% url "volasa:admin_equipaje" %}" method="post">
+        {% csrf_token %}
+        {{ form }}
+        <br>
+        <input type="submit" value="Agregar equipaje">
+        <input type="button" onclick="resetear()" value="Restablecer"><br><br>
+    </form>
+
+    <a href="{% url 'volasa:admin_equipaje_registro' %}">
+        <button>Registrar un equipaje nuevo</button>
+    </a>
+
+<script>
+function resetear() {
+ document.getElementById("form_RegistroEquipaje").reset();
+}
+</script>
+
+</body>
+</html>

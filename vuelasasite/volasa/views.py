@@ -5,8 +5,8 @@ from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.contrib.auth import authenticate, login, logout
 
-from .models import Vuelo, Cliente, InformacionCliente, ClienteXVuelo
-from .forms import FormInicioSesion, FormRegistrar
+from .models import *
+from .forms import *
 
 # Create your views here.
 
@@ -127,3 +127,39 @@ class AdminCheckIn(View):
     @method_decorator(login_required(login_url='volasa:login'))
     def get(self, request):
         return render(request, 'volasa/admin_checkin.html')
+
+class AdminEquipaje(View):
+    @method_decorator(login_required(login_url='volasa:login'))
+    def get(self, request):
+        form = FormRegistrarEquipajeXVuelo()
+        return render(request, 'volasa/admin_equipaje.html', {'form': form})
+
+    @method_decorator(login_required(login_url='volasa:login'))
+    def post(self, request):
+        form = FormRegistrarEquipajeXVuelo(request.POST)
+        if form.is_valid():
+            # TODO: Registrar equipaje en un viaje ya reservado
+            # Reinicio el formulario
+            form = FormRegistrarEquipajeXVuelo()
+        return render(request, 'volasa/admin_equipaje.html', {'form': form})
+
+class AdminEquipajeRegistro(View):
+    model = EquipajeRegistrado
+
+    @method_decorator(login_required(login_url='volasa:login'))
+    def get(self, request):
+        form = FormRegistrarEquipaje()
+        return render(request, 'volasa/admin_equipaje_registro.html', {'form': form})
+
+    @method_decorator(login_required(login_url='volasa:login'))
+    def post(self, request):
+        form = FormRegistrarEquipaje(request.POST)
+        if form.is_valid():
+            # Construyo un nuevo equipaje a partir de la información pasada
+            equip_nuevo = EquipajeRegistrado(descripcion = form.cleaned_data['descripcion'],
+                                             peso = form.cleaned_data['peso'])
+            # Lo guardo en la base de datos
+            equip_nuevo.save()
+            # Reinicio el formulario
+            form = FormRegistrarEquipaje()
+        return render(request, 'volasa/admin_equipaje_registro.html', {'form': form})
