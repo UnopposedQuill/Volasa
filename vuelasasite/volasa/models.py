@@ -77,6 +77,7 @@ class Vuelo(models.Model):
     def get_vuelos_disponibles():
         return Vuelo.objects.filter(fechaPartida__gt=datetime.now())
 
+
 class ClienteXVuelo(models.Model):
     # Primero las dos tablas que une este intermediario
     idCliente = models.ForeignKey(Cliente, on_delete=models.CASCADE)

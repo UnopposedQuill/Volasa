@@ -1,5 +1,4 @@
 from django.urls import path
-from django.contrib.auth.decorators import login_required
 from . import views
 
 
@@ -11,4 +10,5 @@ urlpatterns = [
     path('cliente/<int:cliente_id>/', views.VistaCliente.as_view(), name='cliente'),
     path('vuelos', views.VistaVuelos.as_view(), name='vuelos'),
     path('vuelos/<str:vuelo_id>/', views.VistaVuelo.as_view(), name='vuelo'),
+    path('cliente/<int:cliente_id>/vuelos', views.HistorialVuelos.as_view(), name='historial_vuelos'),
 ]

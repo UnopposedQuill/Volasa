@@ -1,11 +1,11 @@
 from django.http import HttpResponse
-from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import render, get_object_or_404, redirect, get_list_or_404
 from django.views import View
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.contrib.auth import authenticate, login, logout
 
-from .models import Vuelo, Cliente, InformacionCliente
+from .models import Vuelo, Cliente, InformacionCliente, ClienteXVuelo
 from .forms import FormInicioSesion, FormRegistrar
 
 # Create your views here.
@@ -103,3 +103,12 @@ class Logout(View):
     def get(self, request):
         logout(request)
         return render(request, 'volasa/logout.html')
+
+
+class HistorialVuelos(View):
+
+    def get(self, request, cliente_id):
+        cliente_solicitud = get_object_or_404(Cliente, pk=cliente_id)
+        vuelos_cliente = ClienteXVuelo.objects.filter(idCliente=cliente_solicitud)[:10]
+        context = {'vuelos_cliente': vuelos_cliente}
+        return render(request, 'volasa/historialvuelo.html', context)

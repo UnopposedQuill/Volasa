@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Historial Vuelos</title>
+</head>
+<body>
+    <h1>Historial de Vuelos</h1>
+    {% if vuelos_disponibles %}
+        <ul>
+        {% for vuelo in vuelos_cliente %}
+            <li><a href="{% url 'volasa:vuelo' vuelo.codigoAvion %}">{{ vuelo.codigoAvion }}</a></li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No hay ningún vuelo registrado.</p>
+    {% endif %}
+</body>
+</html>
