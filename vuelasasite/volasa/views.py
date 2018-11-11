@@ -16,7 +16,9 @@ class VistaCliente(View):
 
     def get(self, request, cliente_id):
         cliente_request = get_object_or_404(Cliente, pk=cliente_id)
-        return render(request, 'volasa/cliente.html', {'cliente': cliente_request})
+        informacion_cliente = get_object_or_404(InformacionCliente, idCliente=cliente_request)
+        context = {'cliente': cliente_request, 'informacion_cliente': informacion_cliente}
+        return render(request, 'volasa/cliente.html', context)
 
     @method_decorator(login_required(login_url='volasa:login'))
     def dispatch(self, *args, **kwargs):

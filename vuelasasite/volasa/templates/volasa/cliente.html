@@ -21,7 +21,14 @@
     </a>
     {% if cliente %}
         <hr>
-        <p>Información Personal:<br/>Nombre: {{ cliente.nombre }}</p>
+        <h2>Información Personal:</h2>
+            <p>
+                Nombre: {{ cliente.get_full_name }}<br>
+                Nombre de Usuario: {{ cliente.get_username }}<br>
+                Email: {{ cliente.get_email_field_name }}<br>
+                Número de Pasaporte: {{ informacion_cliente.numeroPasaporte }}<br>
+                País de Procedencia: {{ informacion_cliente.paisProcedencia }}<br>
+            <p>
     {% endif %}
 </body>
 </html>
