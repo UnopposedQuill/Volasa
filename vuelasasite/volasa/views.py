@@ -35,7 +35,7 @@ class VistaVuelos(View):
 
     @method_decorator(login_required(login_url='volasa:login'))
     def get(self, request):
-        vuelos_disponibles = Vuelo.objects.order_by('-fechaPartida')[:5]
+        vuelos_disponibles = Vuelo.get_vuelos_disponibles()[:10]
         context = {'vuelos_disponibles': vuelos_disponibles}
         return render(request, 'volasa/vuelos.html', context)
 
@@ -97,10 +97,7 @@ class Login(View):
 
 
 class Logout(View):
-
     @method_decorator(login_required(login_url='volasa:login'))
     def get(self, request):
         logout(request)
         return render(request, 'volasa/logout.html')
-
-

@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from datetime import datetime
 
 # Create your models here.
 """ 
@@ -73,6 +74,8 @@ class Vuelo(models.Model):
     def __str__(self):
         return "Vuelo: " + self.codigoAvion + "\tde la aerolínea: " + self.aerolinea
 
+    def get_vuelos_disponibles():
+        return Vuelo.objects.filter(fechaPartida__gt=datetime.now())
 
 class ClienteXVuelo(models.Model):
     # Primero las dos tablas que une este intermediario
