@@ -74,8 +74,9 @@ class Vuelo(models.Model):
     def __str__(self):
         return "Vuelo: " + self.codigoAvion + "\tde la aerolínea: " + self.aerolinea
 
+    @staticmethod
     def get_vuelos_disponibles():
-        return Vuelo.objects.filter(fechaPartida__gt=datetime.now())
+        return Vuelo.objects.filter(fechaPartida__gt=datetime.now()).order_by('fechaPartida')
 
 
 class ClienteXVuelo(models.Model):

@@ -2,11 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9358489a-15f9-43d2-aebb-e2d9c75de8fe" name="Default Changelist" comment="Agregados los archivos necesarios para el manejo con la versión profesional de Pycharm al proyecto.">
-      <change afterPath="$PROJECT_DIR$/vuelasasite/volasa/templates/volasa/historialvuelo.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vuelasasite/volasa/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/vuelasasite/volasa/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vuelasasite/volasa/templates/volasa/cliente.html" beforeDir="false" afterPath="$PROJECT_DIR$/vuelasasite/volasa/templates/volasa/cliente.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vuelasasite/volasa/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/vuelasasite/volasa/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vuelasasite/volasa/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/vuelasasite/volasa/views.py" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.idea/httpRequests/" />
@@ -86,7 +83,7 @@
           <entry key="Django Console" value="65" />
           <entry key="dummy" value="17" />
           <entry key="html" value="2601" />
-          <entry key="py" value="10188" />
+          <entry key="py" value="10268" />
           <entry key="txt" value="196" />
         </counts>
       </usages-collector>
@@ -94,7 +91,7 @@
         <counts>
           <entry key="HTML" value="2601" />
           <entry key="PLAIN_TEXT" value="213" />
-          <entry key="Python" value="10253" />
+          <entry key="Python" value="10333" />
         </counts>
       </usages-collector>
     </session>
@@ -122,7 +119,7 @@
             <entry file="file://$PROJECT_DIR$/vuelasasite/volasa/views.py">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="194">
-                  <caret line="111" column="64" selection-start-line="111" selection-start-column="64" selection-end-line="111" selection-end-column="64" />
+                  <caret line="111" column="8" selection-start-line="111" selection-start-column="8" selection-end-line="111" selection-end-column="8" />
                   <folding>
                     <element signature="e#0#36#0" expanded="true" />
                     <element signature="e#764#848#0" />
@@ -179,8 +176,8 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/vuelasasite/volasa/models.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="197">
-                  <caret line="77" column="30" lean-forward="true" selection-start-line="77" selection-start-column="30" selection-end-line="77" selection-end-column="30" />
+                <state relative-caret-position="327">
+                  <caret line="78" column="79" selection-start-line="78" selection-start-column="79" selection-end-line="78" selection-end-column="79" />
                   <folding>
                     <element signature="e#0#28#0" expanded="true" />
                   </folding>
@@ -223,10 +220,10 @@
         <option value="$PROJECT_DIR$/vuelasasite/volasa/templates/volasa/registrar.html" />
         <option value="$PROJECT_DIR$/vuelasasite/volasa/templates/volasa/checkin.html" />
         <option value="$PROJECT_DIR$/vuelasasite/volasa/templates/volasa/vuelos.html" />
-        <option value="$PROJECT_DIR$/vuelasasite/volasa/models.py" />
         <option value="$PROJECT_DIR$/vuelasasite/volasa/templates/volasa/historialvuelo.html" />
         <option value="$PROJECT_DIR$/vuelasasite/volasa/urls.py" />
         <option value="$PROJECT_DIR$/vuelasasite/volasa/templates/volasa/cliente.html" />
+        <option value="$PROJECT_DIR$/vuelasasite/volasa/models.py" />
         <option value="$PROJECT_DIR$/vuelasasite/volasa/views.py" />
       </list>
     </option>
@@ -783,8 +780,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/vuelasasite/volasa/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="197">
-          <caret line="77" column="30" lean-forward="true" selection-start-line="77" selection-start-column="30" selection-end-line="77" selection-end-column="30" />
+        <state relative-caret-position="327">
+          <caret line="78" column="79" selection-start-line="78" selection-start-column="79" selection-end-line="78" selection-end-column="79" />
           <folding>
             <element signature="e#0#28#0" expanded="true" />
           </folding>
@@ -794,7 +791,7 @@
     <entry file="file://$PROJECT_DIR$/vuelasasite/volasa/views.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="194">
-          <caret line="111" column="64" selection-start-line="111" selection-start-column="64" selection-end-line="111" selection-end-column="64" />
+          <caret line="111" column="8" selection-start-line="111" selection-start-column="8" selection-end-line="111" selection-end-column="8" />
           <folding>
             <element signature="e#0#36#0" expanded="true" />
             <element signature="e#764#848#0" />

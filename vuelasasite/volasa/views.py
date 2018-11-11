@@ -109,6 +109,6 @@ class HistorialVuelos(View):
 
     def get(self, request, cliente_id):
         cliente_solicitud = get_object_or_404(Cliente, pk=cliente_id)
-        vuelos_cliente = ClienteXVuelo.objects.filter(idCliente=cliente_solicitud)[:10]
+        vuelos_cliente = ClienteXVuelo.objects.filter(idCliente=cliente_solicitud).order_by('fechaPartida')[:10]
         context = {'vuelos_cliente': vuelos_cliente}
         return render(request, 'volasa/historialvuelo.html', context)
