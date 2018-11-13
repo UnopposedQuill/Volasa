@@ -24,6 +24,7 @@ class VistaCliente(View):
     def dispatch(self, *args, **kwargs):
         return super().dispatch(*args, **kwargs)
 
+
 class VistaAdmin(View):
     model = Cliente
 
@@ -182,6 +183,7 @@ class AdminCheckIn(View):
             # Lo guardo en la base de datos
             clienteXvuelo_actual.save()
         return self.get(request, admin_id)
+
 
 class AdminEquipaje(View):
     @method_decorator(login_required(login_url='volasa:login'))
