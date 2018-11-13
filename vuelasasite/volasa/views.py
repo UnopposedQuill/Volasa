@@ -37,10 +37,27 @@ class VistaAdmin(View):
         return super().dispatch(*args, **kwargs)
 
 class VistaVuelo(View):
-
     @method_decorator(login_required(login_url='volasa:login'))
     def get(self, request, vuelo_id):
-        return HttpResponse("Vuelo %s" % vuelo_id)
+        vuelo_request = get_object_or_404(Vuelo, pk=vuelo_id)
+        form = FormReservarVuelo()
+        context = {'vuelo':vuelo_request, 'form':form}
+        return render(request, 'volasa/vuelo.html', context)
+
+    def post(self, request, vuelo_id):
+        form = FormReservarVuelo(request.POST)
+        if form.is_valid():
+            # Construyo un nuevo cliente a partir de la información pasada
+            clienteXvuelo_nuevo = ClienteXVuelo(idCliente_id=form.cleaned_data['idCliente'],
+                                                idVuelo_id=form.cleaned_data['idVuelo'],
+                                                idEstadoVuelo_id=1,
+                                                clase=form.cleaned_data['clase'],
+                                                asiento_id=form.cleaned_data['idAsiento'])
+            # Lo guardo en la base de datos
+            clienteXvuelo_nuevo.save()
+            # Reinicio el formulario
+            form = FormReservarVuelo()
+        return self.get(request,vuelo_id)
 
 
 class VistaVuelos(View):
@@ -53,8 +70,16 @@ class VistaVuelos(View):
         return render(request, 'volasa/vuelos.html', context)
 
 
-class Register(View):
+class HistorialVuelos(View):
+    @method_decorator(login_required(login_url='volasa:login'))
+    def get(self, request, cliente_id):
+        cliente_solicitud = get_object_or_404(Cliente, pk=cliente_id)
+        vuelos_cliente = ClienteXVuelo.objects.filter(idCliente=cliente_solicitud)[:10]
+        context = {'vuelos_cliente': vuelos_cliente}
+        return render(request, 'volasa/historialvuelo.html', context)
 
+
+class Register(View):
     def get(self, request):
         form = FormRegistrar()
         return render(request, 'volasa/registrar.html', {'form': form})
@@ -116,17 +141,11 @@ class Logout(View):
         return render(request, 'volasa/logout.html')
 
 
-class HistorialVuelos(View):
-    def get(self, request, cliente_id):
-        cliente_solicitud = get_object_or_404(Cliente, pk=cliente_id)
-        vuelos_cliente = ClienteXVuelo.objects.filter(idCliente=cliente_solicitud).order_by('fechaPartida')[:10]
-        context = {'vuelos_cliente': vuelos_cliente}
-        return render(request, 'volasa/historialvuelo.html', context)
-
 class AdminCheckIn(View):
     @method_decorator(login_required(login_url='volasa:login'))
     def get(self, request):
         return render(request, 'volasa/admin_checkin.html')
+
 
 class AdminEquipaje(View):
     @method_decorator(login_required(login_url='volasa:login'))
@@ -138,10 +157,16 @@ class AdminEquipaje(View):
     def post(self, request):
         form = FormRegistrarEquipajeXVuelo(request.POST)
         if form.is_valid():
-            # TODO: Registrar equipaje en un viaje ya reservado
+            clienteXvuelo_actual = get_object_or_404(ClienteXVuelo, pk=form.cleaned_data['idClienteXVuelo'])
+            equipaje_actual = get_object_or_404(EquipajeRegistrado, pk=form.cleaned_data['idEquipaje'])
+            equipxVuelo = ClienteXVuelo_Equipaje(clientexvuelo=clienteXvuelo_actual,
+                                                 equipajeregistrado=equipaje_actual)
+            # Lo guardo en la base de datos
+            equipxVuelo.save()
             # Reinicio el formulario
             form = FormRegistrarEquipajeXVuelo()
         return render(request, 'volasa/admin_equipaje.html', {'form': form})
+
 
 class AdminEquipajeRegistro(View):
     model = EquipajeRegistrado

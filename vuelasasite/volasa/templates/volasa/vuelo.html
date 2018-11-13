@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Detalles del vuelo</title>
+</head>
+<body>
+    {% if vuelo %}
+        <h1>Vuelo n° {{ vuelo.pk }}</h1><hr>
+        <h2>Detalles</h2>
+        <p>
+            Origen: {{ vuelo.origen }} - Destino: {{ vuelo.destino }}<br>
+            Fecha de partida: {{ vuelo.fechaPartida }}<br>
+            Fecha de llegada: {{ vuelo.fechaLlegada }}<br>
+            Cant. de asientos: {{ vuelo.cantidadAsientos }}<br>
+            Cant. de escalas: {{ vuelo.cantidadEscalas }}<br>
+            Precio: {{ vuelo.precio }}<br>
+        <p>
+        <form id="form_Reservacion" action="{% url "volasa:vuelo" vuelo.pk%}" method="post">
+        {% csrf_token %}
+        {{ form }}
+        <br>
+        <input type="submit" value="Reservar">
+        <input type="button" onclick="resetear()" value="Restablecer"><br><br>
+    </form>
+    {% endif %}
+
+    <a href="{% url "volasa:vuelos" %}">
+        <button>Regresar</button>
+    </a>
+
+    <script>
+        function resetear() {
+            document.getElementById("form_Reservacion").reset();
+        }
+    </script>
+</body>
+</html>

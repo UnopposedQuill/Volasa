@@ -10,7 +10,7 @@
     {% if vuelos_disponibles %}
         <ul>
         {% for vuelo in vuelos_disponibles %}
-            <li><a href="{% url 'volasa:vuelo' vuelo.codigoAvion %}">{{ vuelo.codigoAvion }}</a></li>
+            <li><a href="{% url 'volasa:vuelo' vuelo.pk %}">{{ vuelo.origen }} - {{ vuelo.destino }}</a></li>
         {% endfor %}
         </ul>
     {% else %}

@@ -34,7 +34,7 @@ class EstadoVuelo(models.Model):
     descripcion = models.CharField(max_length=20)
 
     def __str__(self):
-        return self.descripcion
+        return str(self.pk) + ": " + self.descripcion
 
 
 class EquipajeRegistrado(models.Model):
@@ -50,13 +50,13 @@ class Asiento(models.Model):
     columna = models.PositiveIntegerField()
 
     def __str__(self):
-        return "Fila: " + str(self.fila) + "Columna: " + str(self.columna)
+        return "Asiento " + str(self.pk) + ":\tFila: " + str(self.fila) + " - Columna: " + str(self.columna)
 
 
 class Vuelo(models.Model):
-    codigoAvion = models.CharField(max_length=20)
+    origen = models.CharField(max_length=20)
+    destino = models.CharField(max_length=20)
     cantidadAsientos = models.PositiveIntegerField()
-    aerolinea = models.CharField(max_length=50)
     fechaPartida = models.DateTimeField()
     fechaLlegada = models.DateTimeField()
     # Usar tipo Decimal para representar punto flotante.
@@ -71,7 +71,7 @@ class Vuelo(models.Model):
     cliente = models.ManyToManyField(Cliente, through='ClienteXVuelo')
 
     def __str__(self):
-        return "Vuelo: " + self.codigoAvion + "\tde la aerolínea: " + self.aerolinea
+        return "Vuelo n°" + str(self.pk) + ": " + self.origen + "-" + self.destino +" (" + str(self.fechaPartida) + " - " + str(self.fechaLlegada) + ")"
 
     @staticmethod
     def get_vuelos_disponibles():
@@ -89,8 +89,17 @@ class ClienteXVuelo(models.Model):
     asiento = models.ForeignKey(Asiento, on_delete=models.CASCADE)
 
     # Finalmente necesito una relación Many to Many con los equipajes registrados
-    # Como esta tabla intermediaria no necesita información adicional dejaré que Django la maneje por sí mismo
-    equipaje = models.ManyToManyField(EquipajeRegistrado)
+    # Lo siguiente ya no es válido:
+    #   Como esta tabla intermediaria no necesita información adicional dejaré que Django la maneje por sí mismo
+    equipaje = models.ManyToManyField(EquipajeRegistrado, through='ClienteXVuelo_Equipaje')
 
     def __str__(self):
-        return "Reservación\nCliente: " + str(self.idCliente) + "\tVuelo" + str(self.idVuelo)
+        return "Reservación n°" + str(self.pk) + "\tCliente: " + str(self.idCliente) + "\tVuelo: " + str(self.idVuelo)
+
+class ClienteXVuelo_Equipaje(models.Model):
+    # Primero las dos tablas que une este intermediario
+    clientexvuelo = models.ForeignKey(ClienteXVuelo, on_delete=models.CASCADE)
+    equipajeregistrado = models.ForeignKey(EquipajeRegistrado, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return "Reservación: " + str(self.idClienteXVuelo) + "\tEquipaje: " + str(self.idEquipaje)

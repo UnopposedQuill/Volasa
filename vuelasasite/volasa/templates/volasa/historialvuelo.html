@@ -2,14 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Historial Vuelos</title>
+    <title>Historial de Vuelos</title>
 </head>
 <body>
     <h1>Historial de Vuelos</h1>
-    {% if vuelos_disponibles %}
+    <hr>
+    {% if vuelos_cliente %}
         <ul>
         {% for vuelo in vuelos_cliente %}
-            <li><a href="{% url 'volasa:vuelo' vuelo.codigoAvion %}">{{ vuelo.codigoAvion }}</a></li>
+            <li><a href="{% url 'volasa:vuelo' vuelo.pk %}">{{ vuelo.origen }} - {{ vuelo.destino }}</a></li>
         {% endfor %}
         </ul>
     {% else %}
