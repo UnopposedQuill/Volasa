@@ -1,12 +1,31 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Opciones Check-In</title>
+    <title>Check-In</title>
 </head>
 <body>
     <h1>Bienvenido al menú del check-in</h1>
     <hr>
+    {% if cliente %}
+        <form id="form_CheckIn" action="{% url "volasa:checkin" cliente.pk %}" method="post">
+            {% csrf_token %}
+            {{ form }}
+            <br>
+            <input type="submit" value="Hacer check-in">
+            <input type="button" onclick="resetear()" value="Restablecer"><br>
+        </form>
+
+        <a href="{% url "volasa:cliente" cliente.pk %}">
+            <button>Regresar</button>
+        </a>
+    {%  endif %}
+
+<script>
+function resetear() {
+ document.getElementById("form_CheckIn").reset();
+}
+</script>
 
 </body>
 </html>

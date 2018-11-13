@@ -22,5 +22,11 @@ class FormRegistrarEquipaje(forms.Form):
     peso = forms.DecimalField(label='Peso')
 
 class FormRegistrarEquipajeXVuelo(forms.Form):
-    idClienteXVuelo = forms.IntegerField(label='ID de la reservación (ClienteXVuelo)')
+    idClienteXVuelo = forms.IntegerField(label='ID de la reservación')
     idEquipaje = forms.IntegerField(label='ID del equipaje')
+
+class FormCheckInAdmin(forms.Form):
+    idClienteXVuelo = forms.IntegerField(label='ID de la reservación')
+
+class FormCheckIn(forms.Form):
+    idClienteXVuelo = forms.IntegerField(label='ID de la reservación')

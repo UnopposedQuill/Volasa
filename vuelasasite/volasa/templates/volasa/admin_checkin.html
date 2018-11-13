@@ -7,6 +7,25 @@
 <body>
     <h1>Bienvenido al menú del check-in</h1>
     <hr>
+    {% if admin %}
+        <form id="form_CheckInAdmin" action="{% url "volasa:admin_checkin" admin.pk %}" method="post">
+            {% csrf_token %}
+            {{ form }}
+            <br>
+            <input type="submit" value="Hacer check-in">
+            <input type="button" onclick="resetear()" value="Restablecer"><br>
+        </form>
+
+        <a href="{% url "volasa:admin" admin.pk %}">
+            <button>Regresar</button>
+        </a>
+    {%  endif %}
+
+<script>
+function resetear() {
+ document.getElementById("form_CheckInAdmin").reset();
+}
+</script>
 
 </body>
 </html>

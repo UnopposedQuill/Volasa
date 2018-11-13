@@ -141,11 +141,47 @@ class Logout(View):
         return render(request, 'volasa/logout.html')
 
 
+class CheckIn(View):
+    @method_decorator(login_required(login_url='volasa:login'))
+    def get(self, request, cliente_id):
+        form = FormCheckIn()
+        cliente_request = get_object_or_404(Cliente, pk=cliente_id)
+        informacion_cliente = get_object_or_404(InformacionCliente, idCliente=cliente_request)
+        context = {'cliente': cliente_request, 'informacion_cliente': informacion_cliente, 'form':form}
+        return render(request, 'volasa/checkin.html',context)
+
+    @method_decorator(login_required(login_url='volasa:login'))
+    def post(self, request, cliente_id):
+        form = FormCheckInAdmin(request.POST)
+        if form.is_valid():
+            clienteXvuelo_actual = get_object_or_404(ClienteXVuelo, pk=form.cleaned_data['idClienteXVuelo'])
+            viaje_actual = get_object_or_404(Vuelo, pk=clienteXvuelo_actual.idVuelo_id)
+            # Revisa que queden 24 horas
+            # TODO: Revisar que queden 24 horas
+            clienteXvuelo_actual.idEstadoVuelo_id = 2
+            # Lo guardo en la base de datos
+            clienteXvuelo_actual.save()
+        return self.get(request,cliente_id)
+
+
 class AdminCheckIn(View):
     @method_decorator(login_required(login_url='volasa:login'))
-    def get(self, request):
-        return render(request, 'volasa/admin_checkin.html')
+    def get(self, request, admin_id):
+        admin_request = get_object_or_404(Cliente, pk=admin_id)
+        form = FormCheckInAdmin()
+        context = {'admin': admin_request, 'form':form}
+        return render(request, 'volasa/admin_checkin.html',context)
 
+    @method_decorator(login_required(login_url='volasa:login'))
+    def post(self, request, admin_id):
+        form = FormCheckInAdmin(request.POST)
+        if form.is_valid():
+            # Obtengo el vuelo y le cambio el estado a checkeado
+            clienteXvuelo_actual = get_object_or_404(ClienteXVuelo, pk=form.cleaned_data['idClienteXVuelo'])
+            clienteXvuelo_actual.idEstadoVuelo_id = 2
+            # Lo guardo en la base de datos
+            clienteXvuelo_actual.save()
+        return self.get(request, admin_id)
 
 class AdminEquipaje(View):
     @method_decorator(login_required(login_url='volasa:login'))
